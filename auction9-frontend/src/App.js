@@ -1,22 +1,27 @@
+import './App.css';
 import Button from '@mui/material/Button';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from "react";
 
 function App() {
 
-  const [user, setUser] = useState();
+  const [users, setUsers] = useState(null);
 
   useEffect(() => {
     fetch('http://localhost:3000/')
-      .then(response => response.json())
-      .then(user => setUser(user));
+      .then(response => {
+        return response.json()
+      })
+      .then((data) => {
+        console.log(data);
+        setUsers(data);
+      });
    }, []);
-
-   console.log(user);
 
   return (
     <div>
-    <h1>Hello, world</h1>
-    <Button variant="contained">COnfirm</Button>
+      <h1>Halo</h1>
+      <Button variant="contained">Contained</Button>
+      <h1>{users && users.user.map(x => x.first_name)}</h1>
     </div>
   );
 }

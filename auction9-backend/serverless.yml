@@ -15,36 +15,38 @@ functions:
           path: /
           method: get
 
+# auctions
+
   getAuctions:
-    handler: handler.hello
+    handler: auctions.getAuctions
     events:
       - httpApi:
           path: /auctions
           method: get
 
   getAuction:
-    handler: handler.hello
+    handler: auctions.getAuction
     events:
       - httpApi:
           path: /auctions/{id}
           method: get
 
   createAuction:
-    handler: handler.hello
+    handler: auctions.createAuction
     events:
       - httpApi:
           path: /auctions/create
           method: post
 
   updateAuction:
-    handler: handler.hello
+    handler: auctions.updateAuction
     events:
       - httpApi:
           path: /auctions/update/{id}
           method: put
 
   deleteAuction:
-    handler: handler.hello
+    handler: auctions.deleteAuction
     events:
       - httpApi:
           path: /auctions/delete/{id}
@@ -53,31 +55,31 @@ functions:
 #auctions done, bid paths now 
 
   getBid:
-    handler: handler.hello
+    handler: bids.getBid
     events:
       - httpApi:
-          path: /bid/{id}
+          path: /bids/{id}
           method: get
 
   getBids:
-    handler: handler.hello
+    handler: bids.getBids
     events:
       - httpApi:
           path: /bids
           method: get
 
   postBid:
-    handler: handler.hello
+    handler: bids.createBid
     events:
       - httpApi:
-          path: /bid/create
+          path: /bids/create
           method: post
 
   deleteBid:
-    handler: handler.hello
+    handler: bids.deleteBid
     events:
       - httpApi:
-          path: /bid/delete/{id}
+          path: /bids/delete/{id}
           method: put
 
 
