@@ -1,0 +1,85 @@
+service: auction9-backend
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  httpApi: 
+    cors: true
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+  getAuctions:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /auctions
+          method: get
+
+  getAuction:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /auctions/{id}
+          method: get
+
+  createAuction:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /auctions/create
+          method: post
+
+  updateAuction:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /auctions/update/{id}
+          method: put
+
+  deleteAuction:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /auctions/delete/{id}
+          method: put
+
+#auctions done, bid paths now 
+
+  getBid:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /bid/{id}
+          method: get
+
+  getBids:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /bids
+          method: get
+
+  postBid:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /bid/create
+          method: post
+
+  deleteBid:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /bid/delete/{id}
+          method: put
+
+
+plugins:
+  - serverless-offline
