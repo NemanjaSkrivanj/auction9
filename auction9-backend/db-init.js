@@ -16,14 +16,14 @@ async function populateDB() {
         name varchar(255) NOT NULL,
         description varchar(255) NOT NULL,
         image blob NOT NULL,
-        start_date DATETIME,
-        end_date DATETIME,
+        start_date DATETIME NOT NULL,
+        end_date DATETIME NOT NULL,
         starting_price float NOT NULL,
         winner varchar(255),
         status varchar(50) NOT NULL,
         current_bid float,
         end_price float,
-        user_id int,
+        user_id int NOT NULL,
         PRIMARY KEY(auction_id),
         FOREIGN KEY(user_id) REFERENCES users(user_id)
         )ENGINE=INNODB;`);

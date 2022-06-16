@@ -52,7 +52,7 @@ functions:
           path: /auctions/delete/{id}
           method: put
 
-#auctions done, bid paths now 
+#bids
 
   getBid:
     handler: bids.getBid
