@@ -2,16 +2,38 @@ import React from "react";
 import "./CreateAuctionForm.css";
 import { useState } from "react";
 import { TextField, Button } from "@mui/material";
-import { useEffect } from "react";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import moment from 'moment';
 
 function CreateAuctionForm() {
 
-    const [auction, setAuction] = useState({});
+    const date = new Date();
+
+    const [auction, setAuction] = useState({
+        start_date : date.getMonth()+1 + "-" + date.getDate() + "-" + date.getFullYear(),
+        end_date: date.getMonth()+1 + "-" + date.getDate() + "-" + date.getFullYear()
+    });
 
     const handleOnChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         setAuction(values => ({ ...values, [name]: value }))
+    }
+
+    const handleStartDate = (newDate) => {
+        let tmpDate = newDate.getFullYear() + "-" + newDate.getMonth() + "-" + newDate.setDate(newDate.getDate())
+        tmpDate = newDate.toISOString().split('T')[0];
+        moment(tmpDate).format("yyyy/MM/DD");
+        setAuction(values => ({ ...values, start_date: tmpDate}))
+    }
+
+    const handleEndDate = (newDate) => {
+        let tmpDate = newDate.getFullYear() + "-" + newDate.getMonth() + "-" + newDate.setDate(newDate.getDate())
+        tmpDate = newDate.toISOString().split('T')[0];
+        moment(tmpDate).format("yyyy/MM/DD");
+        setAuction(values => ({ ...values, end_date: tmpDate}))
     }
 
     const handleSubmit = (event) => {
@@ -36,14 +58,30 @@ function CreateAuctionForm() {
                     <h1>Auction Form</h1>
                     <TextField name="name" label="Name" variant="outlined" value={auction.name || ""} onChange={handleOnChange} />
                     <TextField name="description" label="Description" variant="outlined" value={auction.description || ""} onChange={handleOnChange} />
-                    <TextField name="image" label="Image" variant="outlined" value={auction.image || ""} onChange={handleOnChange}/>
-                    <TextField name="start_date" label="Start Date" variant="outlined" value={auction.start_date || ""} onChange={handleOnChange}/>
-                    <TextField name="end_date" label="End Date" variant="outlined" value={auction.end_date || ""} onChange={handleOnChange}/>
-                    <TextField name="starting_price" label="Price" variant="outlined" value={auction.starting_price || ""} onChange={handleOnChange}/>
+                    <TextField name="image" label="Image" variant="outlined" value={auction.image || ""} onChange={handleOnChange} />
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DesktopDatePicker
+                            label="Date desktop"
+                            inputFormat="MM/dd/yyyy"
+                            value={auction.start_date}
+                            onChange={handleStartDate}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DesktopDatePicker
+                            label="Date desktop"
+                            inputFormat="MM/dd/yyyy"
+                            value={auction.end_date}
+                            onChange={handleEndDate}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                    <TextField name="starting_price" label="Price" variant="outlined" value={auction.starting_price || ""} onChange={handleOnChange} />
                     <Button type="submit" variant="contained">Create Auction</Button>
                 </div>
             </form>
-            
+
         </div>
     );
 }
