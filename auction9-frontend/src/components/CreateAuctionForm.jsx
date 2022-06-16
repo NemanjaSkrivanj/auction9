@@ -56,10 +56,10 @@ function CreateAuctionForm() {
             <form onSubmit={handleSubmit}>
                 <div id="auctionForm">
                     <h1>Auction Form</h1>
-                    <TextField name="name" label="Name" variant="outlined" value={auction.name || ""} onChange={handleOnChange} />
-                    <TextField name="description" label="Description" variant="outlined" value={auction.description || ""} onChange={handleOnChange} />
-                    <TextField name="image" label="Image" variant="outlined" value={auction.image || ""} onChange={handleOnChange} />
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <TextField name="name" label="Name" variant="outlined" value={auction.name || ""} onChange={handleOnChange} required />
+                    <TextField name="description" label="Description" variant="outlined" value={auction.description || ""} onChange={handleOnChange} required />
+                    <TextField name="image" label="Image" variant="outlined" value={auction.image || ""} onChange={handleOnChange} required />
+                    <LocalizationProvider dateAdapter={AdapterDateFns} required>
                         <DesktopDatePicker
                             label="Date desktop"
                             inputFormat="MM/dd/yyyy"
@@ -68,7 +68,7 @@ function CreateAuctionForm() {
                             renderInput={(params) => <TextField {...params} />}
                         />
                     </LocalizationProvider>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns} required>
                         <DesktopDatePicker
                             label="Date desktop"
                             inputFormat="MM/dd/yyyy"
@@ -77,7 +77,7 @@ function CreateAuctionForm() {
                             renderInput={(params) => <TextField {...params} />}
                         />
                     </LocalizationProvider>
-                    <TextField name="starting_price" label="Price" variant="outlined" value={auction.starting_price || ""} onChange={handleOnChange} />
+                    <TextField name="starting_price" label="Price" variant="outlined" value={auction.starting_price || ""} onChange={handleOnChange} required />
                     <Button type="submit" variant="contained">Create Auction</Button>
                 </div>
             </form>
