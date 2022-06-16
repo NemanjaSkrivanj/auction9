@@ -14,13 +14,15 @@ module.exports.getAuction = async (event) => {
 };
 
 module.exports.createAuction = async (event) => {
-    let { name, description, image, start_date, end_date, starting_price } = JSON.parse(event.body);
+
+     let { name, description, image, start_date, end_date, starting_price } = JSON.parse(event.body);
+     console.log(name, description, image, start_date, end_date, starting_price);
     let user_id = 1;
     let status = "ACTIVE"
-    console.log(name, description, image, start_date, end_date, starting_price);
-    let createAuction = await mysql.query(`INSERT INTO auctions (name, description, image, start_date, end_date, starting_price, status, user_id)
-     VALUES (?)`, [name, description, image, start_date, end_date, starting_price, status, user_id]);
-    return createAuction;
+
+    let auction = mysql.query(`INSERT INTO auctions (name, description, image, start_date, end_date, starting_price, status, user_id) VALUES('${name}', '${description}', '${image}', '${start_date}', '${end_date}', '${starting_price}', '${status}', ${user_id});`);
+
+    return auction;
 };
 
 module.exports.updateAuction = async (event) => {
