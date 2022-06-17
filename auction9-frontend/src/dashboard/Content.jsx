@@ -28,7 +28,7 @@ export default function Content() {
             <Grid item xs>
               <TextField
                 fullWidth
-                placeholder="Search by email address, phone number, or user UID"
+                placeholder="Search auction by item name"
                 InputProps={{
                   disableUnderline: true,
                   sx: { fontSize: 'default' },
