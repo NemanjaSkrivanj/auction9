@@ -10,13 +10,14 @@ import moment from 'moment';
 function CreateAuctionForm() {
 
     const date = new Date();
-    const currentDate = date.getMonth() + 1 + "-" + date.getDate() + "-" + date.getFullYear();
-    console.log(currentDate);
+    const curDate = date.toISOString().split('T')[0];
+    moment(curDate).format("yyyy/MM/DD");
     
     const [auction, setAuction] = useState({
-        start_date: date.getMonth() + 1 + "-" + date.getDate() + 1 + "-" + date.getFullYear(),
-        end_date: date.getMonth() + 1 + "-" + date.getDate() + 1 + "-" + date.getFullYear()
+        start_date: null,
+        end_date: null
     });
+
 
     const handleOnChange = (event) => {
         const name = event.target.name;
@@ -33,7 +34,7 @@ function CreateAuctionForm() {
 
     const handleStartDate = (newDate) => {
         let tmpDate = handleDate(newDate);
-        if(tmpDate > auction.end_date) {
+        if(tmpDate > auction.end_date || tmpDate < curDate) {
             alert('End date cannot be before Start date');
         }
         else {
@@ -43,7 +44,7 @@ function CreateAuctionForm() {
 
     const handleEndDate = (newDate) => {
         let tmpDate = handleDate(newDate);
-        if(tmpDate < auction.start_date) {
+        if(tmpDate < auction.start_date || tmpDate < curDate) {
             alert('Start date cannot be after End date');
         }else setAuction(values => ({ ...values, end_date: tmpDate }))
     }
