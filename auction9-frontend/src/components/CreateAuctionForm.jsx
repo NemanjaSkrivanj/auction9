@@ -10,10 +10,12 @@ import moment from 'moment';
 function CreateAuctionForm() {
 
     const date = new Date();
-
+    const currentDate = date.getMonth() + 1 + "-" + date.getDate() + "-" + date.getFullYear();
+    console.log(currentDate);
+    
     const [auction, setAuction] = useState({
-        start_date : date.getMonth()+1 + "-" + date.getDate() + "-" + date.getFullYear(),
-        end_date: date.getMonth()+1 + "-" + date.getDate() + "-" + date.getFullYear()
+        start_date: date.getMonth() + 1 + "-" + date.getDate() + 1 + "-" + date.getFullYear(),
+        end_date: date.getMonth() + 1 + "-" + date.getDate() + 1 + "-" + date.getFullYear()
     });
 
     const handleOnChange = (event) => {
@@ -22,18 +24,28 @@ function CreateAuctionForm() {
         setAuction(values => ({ ...values, [name]: value }))
     }
 
-    const handleStartDate = (newDate) => {
+    const handleDate = (newDate) => {
         let tmpDate = newDate.getFullYear() + "-" + newDate.getMonth() + "-" + newDate.setDate(newDate.getDate())
         tmpDate = newDate.toISOString().split('T')[0];
         moment(tmpDate).format("yyyy/MM/DD");
-        setAuction(values => ({ ...values, start_date: tmpDate}))
+        return tmpDate;
+    }
+
+    const handleStartDate = (newDate) => {
+        let tmpDate = handleDate(newDate);
+        if(tmpDate > auction.end_date) {
+            alert('End date cannot be before Start date');
+        }
+        else {
+            setAuction(values => ({ ...values, start_date: tmpDate }))
+        } 
     }
 
     const handleEndDate = (newDate) => {
-        let tmpDate = newDate.getFullYear() + "-" + newDate.getMonth() + "-" + newDate.setDate(newDate.getDate())
-        tmpDate = newDate.toISOString().split('T')[0];
-        moment(tmpDate).format("yyyy/MM/DD");
-        setAuction(values => ({ ...values, end_date: tmpDate}))
+        let tmpDate = handleDate(newDate);
+        if(tmpDate < auction.start_date) {
+            alert('Start date cannot be after End date');
+        }else setAuction(values => ({ ...values, end_date: tmpDate }))
     }
 
     const handleSubmit = (event) => {
@@ -59,22 +71,22 @@ function CreateAuctionForm() {
                     <TextField name="name" label="Name" variant="outlined" value={auction.name || ""} onChange={handleOnChange} required />
                     <TextField name="description" label="Description" variant="outlined" value={auction.description || ""} onChange={handleOnChange} required />
                     <TextField name="image" label="Image" variant="outlined" value={auction.image || ""} onChange={handleOnChange} required />
-                    <LocalizationProvider dateAdapter={AdapterDateFns} required>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DesktopDatePicker
-                            label="Date desktop"
+                            label="Start date"
                             inputFormat="MM/dd/yyyy"
                             value={auction.start_date}
                             onChange={handleStartDate}
-                            renderInput={(params) => <TextField {...params} />}
+                            renderInput={(params) => <TextField {...params} required />}
                         />
                     </LocalizationProvider>
                     <LocalizationProvider dateAdapter={AdapterDateFns} required>
                         <DesktopDatePicker
-                            label="Date desktop"
+                            label="End date"
                             inputFormat="MM/dd/yyyy"
                             value={auction.end_date}
                             onChange={handleEndDate}
-                            renderInput={(params) => <TextField {...params} />}
+                            renderInput={(params) => <TextField {...params} required />}
                         />
                     </LocalizationProvider>
                     <TextField name="starting_price" label="Price" variant="outlined" value={auction.starting_price || ""} onChange={handleOnChange} required />
