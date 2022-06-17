@@ -1,6 +1,7 @@
 import './App.css';
 import CreateAuctionForm from './components/CreateAuctionForm';
 import { useState, useEffect } from "react";
+import LandingPage from './dashboard/LandingPage';
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
 
   return (
     <div>
+      <LandingPage />
       <CreateAuctionForm />
     </div>
   );
