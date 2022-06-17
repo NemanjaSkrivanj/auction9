@@ -13,8 +13,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" target="_blank" href="https://www.levi9.com/">
+        Levi9 Serbia
       </Link>{' '}
       {new Date().getFullYear()}.
     </Typography>
