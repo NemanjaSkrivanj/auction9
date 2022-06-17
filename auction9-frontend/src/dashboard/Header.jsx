@@ -10,7 +10,6 @@ import Tabs from '@mui/material/Tabs';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 function Header(props) {
   const { onDrawerToggle } = props;
