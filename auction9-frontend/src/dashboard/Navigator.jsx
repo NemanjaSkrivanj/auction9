@@ -20,7 +20,7 @@ const categories = [
       {
         id: 'Most Posted Auctions',
         icon: <PeopleIcon />,
-        active: true,
+        active: false,
       },
       { id: 'Most Won Auctions', icon: <DnsRoundedIcon /> },
       { id: 'Highest Priced Auctions', icon: <PermMediaOutlinedIcon /> },
