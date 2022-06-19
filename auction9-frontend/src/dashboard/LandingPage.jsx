@@ -178,6 +178,7 @@ export default function Paperbase() {
 
   return (
     <ThemeProvider theme={theme}>
+       <BrowserRouter>
       <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
         <Box
@@ -198,7 +199,6 @@ export default function Paperbase() {
             sx={{ display: { sm: 'block', xs: 'none' } }}
           />
         </Box>
-        <BrowserRouter>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Header onDrawerToggle={handleDrawerToggle} />
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
@@ -211,8 +211,8 @@ export default function Paperbase() {
             <Copyright />
           </Box>
         </Box>
-        </BrowserRouter>
       </Box>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
