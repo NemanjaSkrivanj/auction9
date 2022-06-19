@@ -9,6 +9,7 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import {Link} from 'react-router-dom';
 
 
 function Header(props) {
@@ -32,7 +33,7 @@ function Header(props) {
             <Grid item xs />
             <Grid item>
               <IconButton color="inherit" sx={{ p: 0.5 }}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
+                <Avatar src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="My Avatar" />
               </IconButton>
             </Grid>
           </Grid>
@@ -57,8 +58,8 @@ function Header(props) {
       </AppBar>
       <AppBar component="div" position="static" elevation={0} sx={{ zIndex: 0 }}>
         <Tabs value={0} textColor="inherit">
-          <Tab label="Auctions" />
-          <Tab label="Create Auction" />
+        <Link to="/" style={{ color: '#fff', textDecoration: "none"}}><Tab label="Auctions"  /></Link>
+        <Link to="/createAuction" style={{ color: '#fff', textDecoration: "none"}}><Tab label="Create Auction" /></Link>
         </Tabs>
       </AppBar>
     </React.Fragment>

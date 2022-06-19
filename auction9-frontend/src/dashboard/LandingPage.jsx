@@ -198,20 +198,20 @@ export default function Paperbase() {
             sx={{ display: { sm: 'block', xs: 'none' } }}
           />
         </Box>
+        <BrowserRouter>
         <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Header onDrawerToggle={handleDrawerToggle} />
           <Box component="main" sx={{ flex: 1, py: 6, px: 4, bgcolor: '#eaeff1' }}>
-            <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Content/>}></Route>
                 <Route path="/createAuction" element={<AuctionForm/>}></Route>
               </Routes>
-            </BrowserRouter>
           </Box>
           <Box component="footer" sx={{ p: 2, bgcolor: '#eaeff1' }}>
             <Copyright />
           </Box>
         </Box>
+        </BrowserRouter>
       </Box>
     </ThemeProvider>
   );

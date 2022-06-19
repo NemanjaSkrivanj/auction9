@@ -68,7 +68,7 @@ function CreateAuctionForm() {
         <div>
             <form onSubmit={handleSubmit}>
                 <div id="auctionForm">
-                    <h1>Auction Form</h1>
+                    <h1>Create Auction</h1>
                     <TextField name="name" label="Name" variant="outlined" value={auction.name || ""} onChange={handleOnChange} required />
                     <TextField name="description" label="Description" variant="outlined" value={auction.description || ""} onChange={handleOnChange} required />
                     <TextField name="image" label="Image" variant="outlined" value={auction.image || ""} onChange={handleOnChange} required />
