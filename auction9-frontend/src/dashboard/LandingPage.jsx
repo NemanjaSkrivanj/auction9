@@ -168,7 +168,7 @@ theme = {
 
 const drawerWidth = 256;
 
-export default function Paperbase() {
+export default function LandingPage() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
 
