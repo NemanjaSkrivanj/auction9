@@ -32,9 +32,11 @@ function Header(props) {
             </Grid>
             <Grid item xs />
             <Grid item>
+              <Link to="/profile">
               <IconButton color="inherit" sx={{ p: 0.5 }}>
                 <Avatar src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="My Avatar" />
               </IconButton>
+              </Link>
             </Grid>
           </Grid>
         </Toolbar>
